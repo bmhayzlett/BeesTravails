@@ -1,0 +1,54 @@
+html, body, section, article,
+h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: center;
+  color: inherit;
+  background-color: rgb(255, 255, 153);
+}
+
+.header {
+
+}
+
+.container {
+  display: inline-block;
+  width: 800px;
+  height: 500px;
+  position: relative
+
+}
+
+.game-grass {
+  position: absolute;
+  z-index: 1;
+  opacity: .75;
+}
+
+.game-canvas {
+  position: relative;
+  z-index: 2;
+}
+
+.beePic {
+  width: 10%;
+  height: auto;
+  display: inline-block;
+}
+
+.titles {
+  display: inline-block;
+}
+
+.main-title {
+  display: block;
+}
+
+.subtitle {
+  display: block;
+}
