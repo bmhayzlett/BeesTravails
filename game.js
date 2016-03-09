@@ -34,11 +34,10 @@ function Game (numFlowers) {
   this.canvas = document.getElementById('game-canvas');
   this.c = this.canvas.getContext('2d');
   this.c.clearRect(0,0,800,500);
-  var gamePoints = [];
-  gamePoints.push(addHive(this.c));
-  gamePoints.concat(addFlowers(this.c, numFlowers));
-  gamePoints.concat([400,250]);
-  debugger;
+  var startingPoint = [];
+  startingPoint.push(addHive(this.c));
+  var gamePoints = startingPoint.concat(addFlowers(this.c, numFlowers));
+  gamePoints.push(startingPoint[0]);
 };
 
 function addFlowers(c, numFlowers) {
@@ -63,12 +62,10 @@ function addFlowers(c, numFlowers) {
 
     flower.onload = function (flower) {
       return function () {
-        debugger;
         c.drawImage(this, this.xDim, this.yDim, 50, 50)
       };
     }(flower, this.xDim, this.yDim);
   }
-  debugger;
   return flowerLocations;
 };
 
