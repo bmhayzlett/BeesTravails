@@ -37,8 +37,4 @@ var multiHypotenuse = function (array) {
     totalHypotenuse += hypotenuse(array[i],array[i+1])
   };
   return totalHypotenuse;
-}
-
-Window.travelingSalesman = travelingSalesman;
-
-Window.multiHypotenuse = multiHypotenuse;
+};
