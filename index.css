@@ -28,11 +28,19 @@ h1, h2, p, strong, em, a {
   position: absolute;
   z-index: 1;
   opacity: .75;
+  right:0;
 }
 
 .game-canvas {
-  position: relative;
+  position: absolute;
   z-index: 2;
+  right:0;
+}
+
+.travel-canvas {
+  position: absolute;
+  z-index: 3;
+  right:0;
 }
 
 .beePic {

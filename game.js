@@ -11,34 +11,67 @@
     this.$undo=$('body').find('#undo-button');
     this.$submit=$('body').find('#submit-button');
     this.$giveUp=$('body').find('#give-up-button');
-    this.$undo=$('body').find('#instructions-button');
+    this.$instructions=$('body').find('#instructions-button');
     this.bindClickHandlers();
   };
 
   Options.prototype.bindClickHandlers = function () {
     this.$start.click(this.startGame.bind(this))
-    this.$undo.click(this.startGame.bind(this))
-    this.$submit.click(this.startGame.bind(this))
-    this.$giveUp.click(this.startGame.bind(this))
-    this.$undo.click(this.startGame.bind(this))
+    this.$giveUp.click(this.giveUp.bind(this))
   };
 
   Options.prototype.startGame = function () {
     numFlowers = parseInt(this.$numFlowers[0].value)
-    new Game(numFlowers);
+    this.gameSolution = new Game(numFlowers);
+
   };
 
+  Options.prototype.giveUp = function () {
+    new Solution(this.gameSolution.tourArray)
+
+  }
+
 })();
+
+
+var bee = new Image();
+bee.src = './images/bee_burned.png';
+
+
+function Solution (travelArray) {
+  this.canvas = document.getElementById('travel-canvas');
+  this.c = this.canvas.getContext('2d');
+  beeWidth = 247/7;
+  beeHeight = 202/7;
+
+  for (var i = 0; i < travelArray.length-1; i++) {
+    strokeLine(this.c,travelArray[i][0]+25,travelArray[i][1]+25,
+      travelArray[i+1][0]+25,travelArray[i+1][1]+25);
+  };
+
+  function strokeLine(ctx,x1,y1,x2,y2) {
+    ctx.beginPath();
+    ctx.strokeStyle = 'red';
+    ctx.lineWidth = 3;
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+  };
+
+};
+
 
 function Game (numFlowers) {
   this.canvas = document.getElementById('game-canvas');
   this.c = this.canvas.getContext('2d');
   this.c.clearRect(0,0,800,500);
-  var startingPoint = [];
-  startingPoint.push(addHive(this.c));
-  var gamePoints = startingPoint.concat(addFlowers(this.c, numFlowers));
-  gamePoints.push(startingPoint[0]);
+  document.getElementById('travel-canvas').getContext('2d').clearRect(0,0,800,500);
+
+  var startingPoint = addHive(this.c);
+  var gamePoints = addFlowers(this.c, numFlowers);
+  return travelingSalesman(startingPoint,startingPoint,gamePoints);
 };
+
 
 function addFlowers(c, numFlowers) {
   var flowerImages = ["./images/flower1_burned.png",
@@ -68,6 +101,7 @@ function addFlowers(c, numFlowers) {
   }
   return flowerLocations;
 };
+
 
 function addHive (c) {
   var beehive = new Image();
