@@ -38,3 +38,6 @@ var multiHypotenuse = function (array) {
   };
   return totalHypotenuse;
 };
+
+
+//
