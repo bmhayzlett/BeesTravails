@@ -97,10 +97,7 @@ function Solution (travelArray) {
       strokeLine(gameCanvas,travelArray[i][0]+25,travelArray[i][1]+25,
         travelArray[i+1][0]+25,travelArray[i+1][1]+25);
     }
-<<<<<<< HEAD
-=======
     window.cancelAnimationFrame(animation);
->>>>>>> gh-pages
   };
 
   function strokeLine(ctx,x1,y1,x2,y2) {
@@ -117,12 +114,11 @@ function Solution (travelArray) {
 
 
 function Game (numFlowers) {
-<<<<<<< HEAD
+
   if (typeof animation !== "undefined") {
     window.cancelAnimationFrame(animation);
   };
-=======
->>>>>>> gh-pages
+
   this.canvas = document.getElementById('game-canvas');
   this.c = this.canvas.getContext('2d');
   this.c.clearRect(0,0,800,500);
