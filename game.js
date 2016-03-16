@@ -22,10 +22,10 @@
 
   Options.prototype.startGame = function () {
     numFlowers = parseInt(this.$numFlowers[0].value)
+    this.gameSolution = new Game(numFlowers);
   };
 
   Options.prototype.giveUp = function () {
-    this.gameSolution = new Game(numFlowers);
     new Solution(this.gameSolution.tourArray);
   };
 
