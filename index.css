@@ -1,5 +1,5 @@
 html, body, section, article,
-h1, h2, p, strong, em, a {
+h1, h2, h3, p, strong, em, a {
   margin: 0;
   border: 0;
   padding: 0;
@@ -10,10 +10,72 @@ h1, h2, p, strong, em, a {
   text-align: center;
   color: inherit;
   background-color: rgb(255, 255, 153);
+  font-family: 'ABeeZee', sans-serif;
 }
 
 .header {
+  margin: auto;
+  margin-bottom: 15px;
+  width: 800px;
+}
 
+.beePic {
+  width: 7%;
+  height: auto;
+  display: inline-block;
+}
+
+.titles {
+  display: inline-block;
+}
+
+.main-title {
+  display: block;
+  font-size: 36px;
+}
+
+.subtitle {
+  display: block;
+  font-size: 20px;
+}
+
+.optionBar {
+  margin: auto;
+  margin-bottom: 5px;
+  width: 800px;
+
+}
+
+.infoBar {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  display: inline-block;
+  width: 550px;
+  height: 20px;
+  position: relative;
+}
+
+.time {
+  display: inline-block;
+  width: 272px;
+  height:inherit;
+}
+
+.timeLabel {
+  float:left;
+  padding-left: 3px;
+}
+
+.distance {
+  display: inline-block;
+  width: 272px;
+  height:inherit;
+  border-left: 1px solid black;
+}
+
+.distanceLabel {
+  float: left;
+  padding-left: 3px;
 }
 
 .container {
@@ -21,7 +83,6 @@ h1, h2, p, strong, em, a {
   width: 800px;
   height: 500px;
   position: relative
-
 }
 
 .game-grass {
@@ -41,22 +102,4 @@ h1, h2, p, strong, em, a {
   position: absolute;
   z-index: 3;
   right:0;
-}
-
-.beePic {
-  width: 10%;
-  height: auto;
-  display: inline-block;
-}
-
-.titles {
-  display: inline-block;
-}
-
-.main-title {
-  display: block;
-}
-
-.subtitle {
-  display: block;
 }

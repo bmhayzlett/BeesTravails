@@ -22,11 +22,23 @@
 
   Options.prototype.startGame = function () {
     numFlowers = parseInt(this.$numFlowers[0].value)
-    this.gameSolution = new Game(numFlowers);
+    $('body').find('#solveTime')[0].innerHTML ='';
+    $('body').find('#solveDistance')[0].innerHTML ='';
+    this.gamePoints = new Game(numFlowers);
   };
 
   Options.prototype.giveUp = function () {
-    new Solution(this.gameSolution.tourArray);
+    startTime = performance.now();
+    path = travelingSalesman(this.gamePoints.startingPoint,
+                             this.gamePoints.endingPoint,
+                             this.gamePoints.gamePoints);
+
+    endTime = performance.now();
+    totalTime = (endTime - startTime) / 1000;
+    $('body').find('#solveTime')[0].innerHTML = totalTime.toFixed(5);
+    $('body').find('#solveDistance')[0].innerHTML = path.tourLength.toFixed(2);
+
+    new Solution(path.tourArray);
   };
 
   Options.prototype.showInstructions = function () {
@@ -126,7 +138,11 @@ function Game (numFlowers) {
   this.c.beginPath();
   var startingPoint = addHive(this.c);
   var gamePoints = addFlowers(this.c, numFlowers);
-  return travelingSalesman(startingPoint,startingPoint,gamePoints);
+  return {startingPoint: startingPoint,
+          gamePoints: gamePoints,
+          endingPoint: startingPoint}
+  // [startingPoint].concat(gamePoints).concat([startingPoint]);
+
 };
 
 
