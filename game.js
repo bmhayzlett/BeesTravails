@@ -16,7 +16,8 @@
 
   Options.prototype.bindClickHandlers = function () {
     this.$start.click(this.startGame.bind(this));
-    this.$giveUp.click(this.giveUp.bind(this));
+    this.$giveUp.mousedown(this.calculating);
+    this.$giveUp.mouseup(this.giveUp.bind(this));
     this.$instructions.click(this.showInstructions.bind(this));
   };
 
@@ -27,6 +28,10 @@
     this.gamePoints = new Game(numFlowers);
   };
 
+  Options.prototype.calculating = function () {
+    $('#calculating').show();
+  }
+
   Options.prototype.giveUp = function () {
     startTime = performance.now();
     path = travelingSalesman(this.gamePoints.startingPoint,
@@ -35,6 +40,7 @@
 
     endTime = performance.now();
     totalTime = (endTime - startTime) / 1000;
+    $('#calculating').hide();
     $('body').find('#solveTime')[0].innerHTML = totalTime.toFixed(5);
     $('body').find('#solveDistance')[0].innerHTML = path.tourLength.toFixed(2);
 

@@ -103,3 +103,12 @@ h1, h2, h3, p, strong, em, a {
   z-index: 3;
   right:0;
 }
+
+#calculating {
+  position:absolute;
+  z-index: 4;
+  right:0;
+  left:0;
+  font-size: 48px;
+  display: none;
+}
