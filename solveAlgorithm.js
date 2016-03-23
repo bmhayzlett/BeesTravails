@@ -1,3 +1,7 @@
+// self.addEventListener("message", function(e) {
+//     debugger;
+// }, false);
+
 var travelingSalesman = function (startingPoint, endingPoint, pointArray) {
 
   if (pointArray.length === 1) {
@@ -14,6 +18,7 @@ var travelingSalesman = function (startingPoint, endingPoint, pointArray) {
     newStart = copyArray.splice(index,1)[0];
     var subTour = travelingSalesman(newStart,endingPoint,copyArray)
 
+    // debugger;
     var tour = {}
     tour.tourLength = hypotenuse(startingPoint,subTour.tourArray[0]) + subTour.tourLength;
     tour.tourArray = [startingPoint].concat(subTour.tourArray)

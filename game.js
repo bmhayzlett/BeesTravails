@@ -16,9 +16,22 @@
 
   Options.prototype.bindClickHandlers = function () {
     this.$start.click(this.startGame.bind(this));
-    this.$giveUp.click(this.giveUp.bind(this));
+    this.$giveUp.mousedown(this.showWheel.bind(this));
+    this.$giveUp.mouseup(this.giveUp.bind(this));
+    // // debugger;
+    // var that = this;
+    // this.$giveUp.click(function () {
+    //   // debugger;
+    //   loadWheel(calculate(that))
+    // });
+
     this.$instructions.click(this.showInstructions.bind(this));
   };
+
+  Options.prototype.showWheel = function () {
+    // debugger;
+    $('#loader').show();
+  }
 
   Options.prototype.startGame = function () {
     numFlowers = parseInt(this.$numFlowers[0].value)
@@ -28,17 +41,9 @@
   };
 
   Options.prototype.giveUp = function () {
-    startTime = performance.now();
-    path = travelingSalesman(this.gamePoints.startingPoint,
-                             this.gamePoints.endingPoint,
-                             this.gamePoints.gamePoints);
-
-    endTime = performance.now();
-    totalTime = (endTime - startTime) / 1000;
-    $('body').find('#solveTime')[0].innerHTML = totalTime.toFixed(5);
-    $('body').find('#solveDistance')[0].innerHTML = path.tourLength.toFixed(2);
-
-    new Solution(path.tourArray);
+      // showWheel();
+    var that = this;
+    calculate(that)
   };
 
   Options.prototype.showInstructions = function () {
@@ -46,6 +51,35 @@
   }
 
 })();
+
+var loadWheel = function () {
+  debugger;
+  $('#loader').show();
+  var loading = window.requestAnimationFrame(loadWheel);
+  // debugger;
+  // callback();
+
+};
+
+
+function calculate (that) {
+  // var worker = new Worker ('solveAlgorithm.js')
+  // window.postMessage(["test"]);
+  // debugger;
+  startTime = performance.now();
+    path = travelingSalesman(that.gamePoints.startingPoint,
+      that.gamePoints.endingPoint,
+      that.gamePoints.gamePoints)
+
+  endTime = performance.now();
+  totalTime = (endTime - startTime) / 1000;
+  // window.cancelAnimationFrame(loading);
+  $('#loader').hide();
+  $('body').find('#solveTime')[0].innerHTML = totalTime.toFixed(5);
+  $('body').find('#solveDistance')[0].innerHTML = path.tourLength.toFixed(2);
+
+  new Solution(path.tourArray);
+};
 
 
 function Solution (travelArray) {
