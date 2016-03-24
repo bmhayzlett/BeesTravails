@@ -14,3 +14,8 @@ path will be to follow the octagon shape.
 
 Below is a screenshot showing the app's solution to a problem with 8 flowers.
 ![alt tag](https://cloud.githubusercontent.com/assets/15318784/13910782/88b8a6d0-eee4-11e5-8b8d-f7c38eab1a3e.png)
+
+Ideas for improvement:
+1. Dynamic programming, which will prune off search branches that exceed the current fastest route.
+2. Greedy search, which will test closer points prior to testing farther points
+3. Held-Karp Algorithm.
